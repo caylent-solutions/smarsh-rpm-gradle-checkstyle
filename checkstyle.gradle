@@ -1,0 +1,26 @@
+// ============================================================================
+// RPM Checkstyle Configuration
+// ============================================================================
+// Provides: Checkstyle plugin with Google Java Style rules and Smarsh customizations.
+// Config files are bundled in this package at config/checkstyle/.
+// ============================================================================
+
+def PKG_DIR = project.ext.get('_rpmCurrentPkgDir')
+
+apply plugin: 'checkstyle'
+
+checkstyle {
+    configFile = file("${PKG_DIR}/config/checkstyle/checkstyle.xml")
+    configProperties['config_loc'] = "${PKG_DIR}/config/checkstyle"
+    maxErrors = 0
+    maxWarnings = 0
+    ignoreFailures = false
+    checkstyleTest.enabled = false
+}
+
+tasks.withType(Checkstyle) {
+    reports {
+        xml.required = false
+        html.required = true
+    }
+}
