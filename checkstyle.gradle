@@ -11,7 +11,7 @@ apply plugin: 'checkstyle'
 
 checkstyle {
     configFile = file("${PKG_DIR}/config/checkstyle/checkstyle.xml")
-    configProperties['config_loc'] = "${PKG_DIR}/config/checkstyle"
+    configDirectory = file("${PKG_DIR}/config/checkstyle")
     maxErrors = 0
     maxWarnings = 0
     ignoreFailures = false
